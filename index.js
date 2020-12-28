@@ -198,6 +198,15 @@ hof.counter = function (count) {
     };
 };
 
-hof.revokable = function() {};
+hof.revokable = function (func) {
+    let flag = true;
+    return {
+        invoke: (...args) => {
+            if (flag) return func(...args);
+            else return undefined;
+        },
+        revoke: () => { flag = false; }
+    };
+};
 
 module.exports = hof;

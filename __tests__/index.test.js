@@ -433,7 +433,7 @@ describe('Higher Order Functions', () => {
         expect(Object.keys(hof.counter(20))).toEqual(['up', 'down']);
       });
     });
-    xdescribe('revoke', () => {
+    describe('revoke', () => {
       it('returns an object', () => {
         const obj = hof.revokable(hof.add);
         expect(typeof obj).toBe('object');
