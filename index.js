@@ -1,44 +1,153 @@
 const hof = {};
 
-hof.identity = function() {};
+hof.identity = function (arg) {
+    return arg;
+};
 
-hof.identityf = function() {};
+hof.identityf = function (arg) {
+    return () => { return arg;};
+};
 
-hof.add = function() {};
+hof.add = function (num1, num2) {
+    return num1 + num2;
+};
 
-hof.sub = function() {};
+hof.sub = function (num1, num2) {
+    return num1 - num2;
+};
 
-hof.mul = function() {};
+hof.mul = function (num1, num2) {
+    return num1 * num2;
+};
 
-hof.inc = function() {};
+hof.inc = function (num) {
+    return hof.identity(num) + 1;
+};
 
-hof.addf = function() {};
+hof.addf = function (num) {
+    return (extraNum) => {
+        return num + extraNum;
+    };
+};
 
-hof.curry = function() {};
+hof.curry = function (binaryFunc, numOne) {
+    return (numTwo) => {
+        return binaryFunc(numOne, numTwo);
+    };
+};
 
-hof.liftf = function() {};
+hof.liftf = function (cb) {
+    return (numOne) => { 
+        return (numTwo) => {
+            return cb(numOne, numTwo)
+        };
+    };
+};
 
-hof.twice = function() {};
+hof.twice = function (cb) {
+    return (num) => {
+        return cb(num, num);
+    };
+};
 
-hof.composeu = function() {};
+hof.composeu = function (funcOne, funcTwo) {
+    return (num) => {
+        return funcTwo(funcOne(num));
+    };
+};
 
-hof.composeb = function() {};
+hof.composeb = function (funcOne, funcTwo) {
+    return (...args) => {
+        return funcTwo(funcOne(args[0], args[1]), args[2]);
+    };
+};
 
-hof.limit = function() {};
+hof.limit = function (cb, limit) {
+    let counter = 0;
+    return (num1, num2) => {
+        if (counter < limit) {
+            counter++;
+            return cb(num1, num2);
+        } else {
+            return undefined;
+        }
+    };
+};
 
-hof.from = function() {};
+hof.from = function (num) {
+    let counter = -1;
+    return () => {
+        counter++;
+        return num + counter;
+    };
+};
 
-hof.to = function() {};
+hof.to = function (func, limit) {
+    let count = 0;
+    return (num) => {
+        if (count < limit) {
+            count++
+            return func(num);
+        } else {
+            return undefined;
+        }
+    };
+};
 
-hof.fromTo = function() {};
+hof.fromTo = function (start, end) {
+    let counter = -1;
+    let count = 0;
+    return () => {
+        if (count < end) {
+            count++
+            counter++;
+        return start + counter;
+        } else {
+            return undefined;
+        }
+    };
+};
 
-hof.element = function() {};
+hof.element = function (array, cb) {
+    const fromTo = hof.fromTo(0, array.length)
+    return () => {
+        if (typeof cb === 'function') {
+            return array[cb()]
+        } else {
+            return array[fromTo()]
+        }
+    };
+};
 
-hof.collect = function() {};
+hof.collect = function (cb, array) {
+    return () => {
+        let counter = cb();
+        array.push(counter)
+        if (array[array.length - 1] === undefined) array.pop();
+        return counter;
+    };
+};
 
-hof.filter = function() {};
+hof.filter = function (generatorFunc, trueOrFalseFunc) {
+    return () => {
+        let element = generatorFunc();
+        if (trueOrFalseFunc(element)) {
+            return element;
+        } else {
+            return undefined;
+        }
+    };
+};
 
-hof.concat = function() {};
+hof.concat = function (funcOne, funcTwo) {
+    return () => {
+        let result = funcOne();
+        if (result !== undefined) return result;
+        if (typeof funcTwo === 'function') result = funcTwo();
+        if (result !== undefined) return result;
+        else return undefined;
+    };
+};
 
 hof.fibonaccif = function() {};
 

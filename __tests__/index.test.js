@@ -327,7 +327,7 @@ describe('Higher Order Functions', () => {
         expect(gen()).toBe(undefined);
       });
     });
-    describe('fibonaccif', () => {
+    xdescribe('fibonaccif', () => {
       it('returns a function', () => {
         const fib = hof.fibonaccif(0, 1);
         expect(typeof fib).toBe('function');
@@ -357,7 +357,7 @@ describe('Higher Order Functions', () => {
     });
   });
 
-  describe('gensym Functions', () => {
+  xdescribe('gensym Functions', () => {
     describe('gensymf', () => {
       it('returns a function on first invocation', () => {
         expect(typeof hof.gensymf('A')).toBe('function');
@@ -399,7 +399,7 @@ describe('Higher Order Functions', () => {
     });
   });
 
-  describe('Object Methods', () => {
+  xdescribe('Object Methods', () => {
     describe('counter', () => {
       it('returns an object', () => {
         const obj = hof.counter(10);
@@ -462,7 +462,7 @@ describe('Higher Order Functions', () => {
   });
 });
 
-describe('Advanced Functionality', () => {
+xdescribe('Advanced Functionality', () => {
   describe('curry', () => {
     it('works for any number of arguments', () => {
       const multiply5Numbers = (a, b, c, d, e) => a * b * c * d * e;
