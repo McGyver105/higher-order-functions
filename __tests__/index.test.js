@@ -462,7 +462,7 @@ describe('Higher Order Functions', () => {
   });
 });
 
-xdescribe('Advanced Functionality', () => {
+describe('Advanced Functionality', () => {
   describe('curry', () => {
     it('works for any number of arguments', () => {
       const multiply5Numbers = (a, b, c, d, e) => a * b * c * d * e;
@@ -470,7 +470,7 @@ xdescribe('Advanced Functionality', () => {
       expect(hof.curry(multiply5Numbers, 1, 2, 3)(4, 5)).toBe(120);
     });
   });
-  describe('composeu', () => {
+  xdescribe('composeu', () => {
     it('works for any number of arguments', () => {
       const square = (x) => x * x;
       const double = (x) => x + x;
@@ -480,7 +480,7 @@ xdescribe('Advanced Functionality', () => {
       expect(doubleFourTimes(3)).toBe(double(double(double(double(3)))));
     });
   });
-  describe('concat', () => {
+  xdescribe('concat', () => {
     it('returns undefined if no generators were passed', () => {
       const gen = hof.concat();
       expect(gen()).toBe(undefined);

@@ -30,9 +30,9 @@ hof.addf = function (num) {
     };
 };
 
-hof.curry = function (binaryFunc, numOne) {
-    return (numTwo) => {
-        return binaryFunc(numOne, numTwo);
+hof.curry = function (binaryFunc, ...args1) {
+    return (...args2) => {
+        return binaryFunc(...args1, ...args2);
     };
 };
 
