@@ -327,7 +327,7 @@ describe('Higher Order Functions', () => {
         expect(gen()).toBe(undefined);
       });
     });
-    xdescribe('fibonaccif', () => {
+    describe('fibonaccif', () => {
       it('returns a function', () => {
         const fib = hof.fibonaccif(0, 1);
         expect(typeof fib).toBe('function');
@@ -357,7 +357,7 @@ describe('Higher Order Functions', () => {
     });
   });
 
-  xdescribe('gensym Functions', () => {
+  describe('gensym Functions', () => {
     describe('gensymf', () => {
       it('returns a function on first invocation', () => {
         expect(typeof hof.gensymf('A')).toBe('function');
@@ -399,7 +399,7 @@ describe('Higher Order Functions', () => {
     });
   });
 
-  xdescribe('Object Methods', () => {
+  describe('Object Methods', () => {
     describe('counter', () => {
       it('returns an object', () => {
         const obj = hof.counter(10);
@@ -433,7 +433,7 @@ describe('Higher Order Functions', () => {
         expect(Object.keys(hof.counter(20))).toEqual(['up', 'down']);
       });
     });
-    describe('revoke', () => {
+    xdescribe('revoke', () => {
       it('returns an object', () => {
         const obj = hof.revokable(hof.add);
         expect(typeof obj).toBe('object');

@@ -149,13 +149,54 @@ hof.concat = function (funcOne, funcTwo) {
     };
 };
 
-hof.fibonaccif = function() {};
+hof.fibonaccif = function (num1, num2) {
+    let counterOne = num1;
+    let counterTwo = num2;
+    return () => {
+        counterTwo = counterOne + counterTwo;
+        counterOne = counterTwo - counterOne;
+        return counterTwo - counterOne;
+    };
+};
 
-hof.gensymf = function() {};
+hof.gensymf = function (letter) {
+    let counterObj = {};
+    return () => {
+        if (counterObj[letter] === undefined) {
+            counterObj[letter] = 0;
+        } else {
+            counterObj[letter] += 1;
+        }
+        return `${letter}${counterObj[letter]}`
+    };
+};
 
-hof.gensymff = function() {};
+hof.gensymff = function (cb, start) {
+    return (letter) => {
+        let counterObj = {};
+        return () => {
+            if (counterObj[letter] === undefined) {
+                counterObj[letter] = start + 1;
+            } else {
+                counterObj[letter] = cb(counterObj[letter]);
+            }
+            return `${letter}${counterObj[letter]}`;
+        };
+    };
+};
 
-hof.counter = function() {};
+hof.counter = function (count) {
+    return {
+        up: () => {
+            count++
+            return count;
+        },
+        down: () => {
+            count--;
+            return count;
+        }
+    };
+};
 
 hof.revokable = function() {};
 
